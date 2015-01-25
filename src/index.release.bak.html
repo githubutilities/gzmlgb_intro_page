@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>玛莉隔壁</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="author" content="will">
+	<meta name="keyword" content="玛莉隔壁,gzmlgb,intro,introdution,介绍">
+	<meta name="description" content="玛莉隔壁介绍">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+	<link rel="stylesheet" type="text/css" href="css/jquery.fullPage.min.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.min.css">
+	<style type="text/css">
+		body,html{padding:0; margin:0;height:100%;width:100%;}
+
+		/*logo-page*/
+		#logo-page .mary-logo {
+			position: relative;
+			top: -70px;
+		}
+		#logo-page .word1 {
+			position: relative;
+			top: 20px;
+		}
+		#logo-page img {
+			max-width: 80%;
+			max-height: 80%;
+		}
+
+		#introduction-page .intro {
+			/*position: relative;*/
+		}
+		#introduction-page .word2 {
+			position: absolute;
+			top: 30px;
+		}
+		#introduction-page .ot-dog {
+			position: relative;
+			opacity: 0.5;
+			z-index: 10;
+		}
+		#introduction-page img {
+			max-width: 90%;
+			max-height: 90%;
+		}
+
+		#description-page .word3-body {
+			position: relative;
+			top: 10px;
+		}
+		#description-page .word3-body img {
+			max-width: 80%;
+			max-height: 80%;
+		}
+		
+		#batman-page .intro .batman-img {
+			position: relative;
+			top: -60px;
+		}
+
+		#spiderman-page .intro .spiderman-img {
+			position: relative;
+			top: -60px;
+		}
+
+		#superman-page .intro .superman-img {
+			position: relative;
+			top: -60px;
+		}
+
+		#people-page img {
+			max-width: 75%;
+			max-height: 75%;
+		}
+		
+		#dog-page img {
+			max-width: 75%;
+			max-height: 75%;
+		}
+		#final-page {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 5px;
+		}
+		#final-page .word-fin-1 {
+			position: relative;
+			top: -10px;
+			max-height: 25%;
+		}
+		#final-page .word-fin-2 {
+			height: 25%;
+			position: relative;
+			top: -50px;
+		}
+		#final-page .word-fin-2 img {
+			max-width: 80%;
+			max-height: 80%;
+		}
+		#final-page .word-fin-3 {
+			height: 25%;
+			position: relative;
+			top: -90px;
+		}
+		#final-page .word-fin-3 img {
+			max-width: 80%;
+			max-height: 80%;
+		}
+		#final-page #mary-footer {
+			width: 20%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			bottom: -50px;
+		}
+		#final-page #fin-footer {
+			width: 80%;
+			height: 100%;
+		}
+		.hidden {
+			opacity: 0;
+		}
+		img {
+			max-width: 100%;
+			max-height: 100%;
+			align: middle;
+		}
+		.section{
+			text-align:center;
+		}
+		.intro p{
+			width: 50%;
+			margin: 0 auto;
+			font-size: 1.5em;
+		}
+	</style>
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.easings.min.js"></script>
+	<script type="text/javascript" src="js/jquery.slimscroll.min.js"></script>
+	<script type="text/javascript" src="js/jquery.fullPage.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			function startAnimation(activeDom) {
+				// console.log($('.active'));
+				//var activeDom = $('.active')[0];
+				query = Array.prototype.slice.call(activeDom.querySelectorAll( '[data-mv]' ));
+				console.log(query);
+				query.forEach( function (el) {
+					var attr = el.getAttribute('data-mv');
+					var time = 0;
+					if(el.hasAttribute('delay')) {
+						time = el.getAttribute('delay') * 1000;
+					}
+					setTimeout(function() {
+						el.classList.remove("hidden");
+						el.classList.add("animated");
+						el.classList.add(attr);
+					}, time);
+					
+				})
+			}
+			function stopAnimation(deactiveDom) {
+				console.log(deactiveDom);
+				query = Array.prototype.slice.call(deactiveDom.querySelectorAll( '[data-mv]' ));
+				query.forEach( function (el) {
+					var attr = el.getAttribute('data-mv');
+					el.classList.remove("animated");
+					el.classList.remove(attr);
+					el.classList.add("hidden");
+				})
+			}
+			$('#fullpage').fullpage({
+				//Navigation
+				// menu: '#menu',
+				menu: false,
+				anchors:[],//['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+				navigation: false,
+				navigationPosition: 'right',
+				navigationTooltips: ['firstSlide', 'secondSlide'],
+				slidesNavigation: true,
+				slidesNavPosition: 'bottom',
+
+				//Scrolling
+				css3: true,
+				scrollingSpeed: 700,
+				autoScrolling: true,
+				scrollBar: false,
+				easing: 'easeInQuart',
+				easingcss3: 'ease',
+				loopBottom: false,
+				loopTop: false,
+				loopHorizontal: true,
+				continuousVertical: false,
+				normalScrollElements: '#element1, .element2',
+				scrollOverflow: false,
+				touchSensitivity: 15,
+				normalScrollElementTouchThreshold: 5,
+
+				//Accessibility
+				keyboardScrolling: true,
+				animateAnchor: true,
+				recordHistory: true,
+
+				//Design
+				controlArrows: true,
+				verticalCentered: true,
+				resize : true,
+				sectionsColor: ['#4BBFC3', '#4BBFC3', '#4BBFC3', '#4BBFC3', '#4BBFC3', '#4BBFC3', '#4BBFC3', '#4BBFC3'],
+				paddingTop: '3em',
+				paddingBottom: '10px',
+				fixedElements: '#header, .footer',
+				responsive: 0,
+
+				//Custom selectors
+				sectionSelector: '.section',
+				slideSelector: '.slide',
+
+				//events
+				onLeave: function(index, nextIndex, direction){
+					stopAnimation($('.section')[index - 1]);
+				},
+				afterLoad: function(anchorLink, index){
+					startAnimation($('.section')[index - 1])
+				},
+				afterRender: function(){
+					startAnimation($('.section')[0]);
+				},
+				afterResize: function(){},
+				afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){
+				},
+				onSlideLeave: function(anchorLink, index, slideIndex, direction){}
+			});
+			$('#fullpage').css({
+				opacity: 1
+			})
+
+		});
+	</script>
+	
+</head>
+<body>
+	<div id="fullpage" class="hidden">
+
+		<div id="logo-page" class="section">
+			<div class="intro">
+				<div class="mary-logo">
+					<img class="hidden mary_logo" data-mv="fadeIn" src="imgs/mary_logo.png" alt="mary_logo">
+				</div>
+				<div class="word1">
+					<img class="hidden" data-mv="fadeIn" delay="1" src="imgs/word1.png" alt="中国创业">
+				</div>
+			</div>
+		</div>
+		
+		<div class="section" id="introduction-page">
+			<div class="intro">
+				<div class="word2">
+					<img src="imgs/word2.png" alt="" class="hidden" data-mv="fadeInDownBig">
+				</div>
+				<div class="ot-dog">
+					<img src="imgs/ot_dog.png" alt="" class="hidden" data-mv="fadeInUp">
+				</div>
+			</div>
+		</div>
+
+		<div class="section" id="description-page">
+			<div class="intro">
+				<div class="word3-header">
+					<img src="imgs/word3_header.png" alt="" class="hidden" data-mv="rotateInDownLeft">
+				</div>
+				<div class="word3-body">
+					<img src="imgs/word3_body.png" alt="" class="hidden" data-mv="fadeInUp" delay="1">
+				</div>
+			</div>
+		</div> 
+
+		<div class="section" id="batman-page">
+			<div class="intro">
+				<div class="word4-header">
+					<img src="imgs/word4_header.png" alt="" class="hidden" data-mv="fadeIn">
+				</div>
+				<div class="batman-img">
+					<img src="imgs/batman.png" alt="" class="hidden" data-mv="fadeIn">
+				</div>
+			</div>
+		</div>
+
+		<div class="section" id="spiderman-page">
+			<div class="intro">
+				<div class="word5-header">
+					<img src="imgs/word5_header.png" alt="" class="hidden" data-mv="fadeIn">
+				</div>
+				<div class="spiderman-img">
+					<img src="imgs/spiderman.png" alt="" class="hidden" data-mv="fadeIn">
+				</div>
+			</div>
+		</div>
+
+		<div class="section" id="superman-page">
+			<div class="intro">
+				<div class="word6-header">
+					<img src="imgs/word6_header.png" alt="" class="hidden" data-mv="fadeIn">
+				</div>
+				<div class="superman-img">
+					<img src="imgs/superman.png" alt="" class="hidden" data-mv="fadeIn">
+				</div>
+			</div>
+		</div>
+
+		<div class="section" id="people-page">
+			<div class="slide" id="terrence">
+				<img src="imgs/terrence.jpg" alt="" class="hidden" data-mv="fadeInUp">
+			</div>
+			<div class="slide" id="faye">
+				<img src="imgs/faye.jpg" alt="" class="hidden" data-mv="fadeInDown">
+			</div>
+		</div>
+		<div class="section" id="dog-page">
+			<div class="slide"><img src="imgs/dog1.png" alt=""></div>
+			<div class="slide"><img src="imgs/dog2.png" alt=""></div>
+			<div class="slide"><img src="imgs/dog3.png" alt=""></div>
+			<div class="slide"><img src="imgs/dog4.png" alt=""></div>
+			<div class="slide"><img src="imgs/dog5.png" alt=""></div>
+			<div class="slide"><img src="imgs/dog6.png" alt=""></div>
+			<div class="slide"><img src="imgs/dog7.png" alt=""></div>
+			<div class="slide"><img src="imgs/dog8.png" alt=""></div>
+			<div class="slide"><img src="imgs/dog9.png" alt=""></div>
+			<div class="slide"><img src="imgs/dog10.png" alt=""></div>
+			<div class="slide"><img src="imgs/dog11.png" alt=""></div>
+			<div class="slide"><img src="imgs/dog12.png" alt=""></div>
+		</div>
+		<div class="section" id="final-page">
+			<div class="intro">
+				<div class="word-fin-1">
+					<img src="imgs/word_fin_1.png" alt="" class="hidden" data-mv="fadeInUp">
+				</div>
+				<div class="word-fin-2">
+					<img src="imgs/word_fin_2.png" alt="" class="hidden" data-mv="rollIn" delay="1">
+				</div>
+				<div class="word-fin-3">
+					<div id="mary-footer">
+						<img src="imgs/mary_logo.png" alt="" class="hidden" data-mv="zoomIn" delay="3">
+					</div id="fin-footer">
+					<img src="imgs/word_fin_3.png" alt="" class="hidden" data-mv="zoomIn" delay="2">
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

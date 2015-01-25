@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>玛莉隔壁</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<meta name="author" content="will">
+	<meta name="keyword" content="玛莉隔壁,gzmlgb,intro,introdution,介绍">
+	<meta name="description" content="玛莉隔壁介绍">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+	<link rel="stylesheet" type="text/css" href="css/jquery.fullPage.min.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.min.css">
+	<style type="text/css">
+		body,html{padding:0; margin:0;height:100%;width:100%;}
+		#intro_section .imgContainer .mlgb_logo{
+			max-height: 40%;
+			width: 100%;
+		}
+		#intro_section .imgContainer {
+			position:relative;
+			vertical-align:bottom;
+			animation-name: bounceInUp;
+		}
+		#intro_section .intro {
+			text-align: right;
+
+		}
+
+		#otg_section img {
+			width: 100%;
+		}
+		
+		#people_section .backgrd {
+			width: 100%;
+			height: 100%;
+		}
+		#people_section .terrence_background {
+			width: 100%;
+			height: 50%;
+		}
+		#people_section .faye_background {
+			width: 100%;
+			height: 50%;
+		}
+		#people_section .terrence_background .back_img {
+			width: 100%;
+			height: 100%;
+		}
+		#people_section .faye_background .back_img {
+			width: 100%;
+			height: 100%;
+		}
+		#ot_dog_container {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			/*background-color: rgb(199, 29, 60);*/
+		}
+		#ot_dog_container .block {
+			width: 100%;
+			height: 100%;
+			opacity: 0.8;
+			position: absolute;
+		}
+		#ot_dog_container .block img {
+			height: 80%;
+			top: 0;
+			right: 15%;
+			position: absolute;
+		}
+		#ot_dog_container .ot_dog {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			z-index: 10;
+		}
+		#ot_dog_container .ot_dog img {
+			max-width: 100%;
+			max-height: 100%;
+		}
+		#doggy img {
+			width: 100%;
+			height: 100%;
+		}
+		#fin_page {
+			background-color: #EA2A2A;
+		}
+		#fin_page .mary_logo {
+			width: 100%;
+			height: 40%;
+			float: top;
+		}
+		#fin_page .mary_logo img {
+			max-width: 50%;
+			max-height: 100%;
+			float: top;
+		}
+		#fin_page .mary_logo h1 {
+			float: right;
+		}
+		#fin_page .rani {
+			width: 100%;
+			height: 60%;
+			float: bottom;
+		}
+		#fin_page .rani img {
+			max-width: 100%;
+			max-height: 100%;
+		}
+		.w30 {
+			width: 30%;
+		}
+		.w70 {
+			width: 70%;
+		}
+		.left {
+			float: left;
+		}
+		.right {
+			float: right;
+		}
+		.hidden {
+			opacity: 0;
+		}
+		.easy {
+			-webkit-transition: all 1s ease-in-out;
+			-moz-transition: all 1s ease-in-out;
+			-o-transition: all 1s ease-in-out;
+			transition: all 1s ease-in-out;
+		}
+		.blink_me {
+		    -webkit-animation-name: blinker;
+		    -webkit-animation-duration: 2s;
+		    -webkit-animation-timing-function: linear;
+		    -webkit-animation-iteration-count: infinite;
+
+		    -moz-animation-name: blinker;
+		    -moz-animation-duration: 2s;
+		    -moz-animation-timing-function: linear;
+		    -moz-animation-iteration-count: infinite;
+
+		    animation-name: blinker;
+		    animation-duration: 2s;
+		    animation-timing-function: linear;
+		    animation-iteration-count: infinite;
+		}
+
+		@-moz-keyframes blinker {  
+		    0% { opacity: 1.0; }
+		    50% { opacity: 0.0; }
+		    100% { opacity: 1.0; }
+		}
+
+		@-webkit-keyframes blinker {  
+		    0% { opacity: 1.0; }
+		    50% { opacity: 0.0; }
+		    100% { opacity: 1.0; }
+		}
+
+		@keyframes blinker {  
+		    0% { opacity: 1.0; }
+		    50% { opacity: 0.0; }
+		    100% { opacity: 1.0; }
+		}
+	</style>
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.easings.min.js"></script>
+	<script type="text/javascript" src="js/jquery.slimscroll.min.js"></script>
+	<script type="text/javascript" src="js/jquery.fullPage.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			function startAnimation(activeDom) {
+				// console.log($('.active'));
+				//var activeDom = $('.active')[0];
+				query = Array.prototype.slice.call(activeDom.querySelectorAll( '[data-mv]' ));
+				console.log(query);
+				query.forEach( function (el) {
+					var attr = el.getAttribute('data-mv');
+					var time = 0;
+					if(el.hasAttribute('delay')) {
+						time = el.getAttribute('delay') * 1000;
+					}
+					setTimeout(function() {
+						el.classList.remove("hidden");
+						el.classList.add("animated");
+						el.classList.add(attr);
+					}, time);
+					
+				})
+			}
+			function stopAnimation(deactiveDom) {
+				console.log(deactiveDom);
+				query = Array.prototype.slice.call(deactiveDom.querySelectorAll( '[data-mv]' ));
+				query.forEach( function (el) {
+					var attr = el.getAttribute('data-mv');
+					el.classList.remove("animated");
+					el.classList.remove(attr);
+					el.classList.add("hidden");
+				})
+			}
+			$('#fullpage').fullpage({
+				//Navigation
+				// menu: '#menu',
+				menu: false,
+				anchors:[],//['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+				navigation: false,
+				navigationPosition: 'right',
+				navigationTooltips: ['firstSlide', 'secondSlide'],
+				slidesNavigation: true,
+				slidesNavPosition: 'bottom',
+
+				//Scrolling
+				css3: true,
+				scrollingSpeed: 700,
+				autoScrolling: true,
+				scrollBar: false,
+				easing: 'easeInQuart',
+				easingcss3: 'ease',
+				loopBottom: false,
+				loopTop: false,
+				loopHorizontal: true,
+				continuousVertical: false,
+				normalScrollElements: '#element1, .element2',
+				scrollOverflow: false,
+				touchSensitivity: 15,
+				normalScrollElementTouchThreshold: 5,
+
+				//Accessibility
+				keyboardScrolling: true,
+				animateAnchor: true,
+				recordHistory: true,
+
+				//Design
+				controlArrows: true,
+				verticalCentered: true,
+				resize : true,
+				sectionsColor: ['#FFFFFF', '#4BBFC3', '#7BAABE', '#E43030', '#ccddff'],
+				paddingTop: '3em',
+				paddingBottom: '10px',
+				fixedElements: '#header, .footer',
+				responsive: 0,
+
+				//Custom selectors
+				sectionSelector: '.section',
+				slideSelector: '.slide',
+
+				//events
+				onLeave: function(index, nextIndex, direction){
+					stopAnimation($('.section')[index - 1]);
+				},
+				afterLoad: function(anchorLink, index){
+					startAnimation($('.section')[index - 1])
+				},
+				afterRender: function(){
+					startAnimation($('.section')[0]);
+				},
+				afterResize: function(){},
+				afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){
+				},
+				onSlideLeave: function(anchorLink, index, slideIndex, direction){}
+			});
+			$('#fullpage').css({
+				opacity: 1
+			})
+
+		});
+	</script>
+	
+</head>
+<body>
+	<div id="fullpage" style="opacity: 0">
+
+		<div id="intro_section" class="section">
+			<div class="hidden" data-mv="fadeInDown" delay="1">
+				<font face="黑体" size="7">MaLiGeBi</font>
+			</div>
+			<div class="intro">
+				<img class="hidden" src="imgs/introduction.png" data-mv="bounceInRight" delay="0.5">
+				<!-- <font face="黑体" size="5em">中国新青年故事社交平台</font><br>
+				<font face="黑体" size="5em">有故事的人都在玛莉隔壁</font><br>
+				<font face="黑体" size="5em">让你的故事有价值</font> -->
+			</div>
+				
+			<div class="imgContainer">
+				<img class="mlgb_logo hidden" data-mv="bounceInUp" src="imgs/mlgb_logo.png">
+			</div>
+		</div>
+		<div class="section" id="otg_section">
+			<div class="slide">
+				<h1>蝙蝠侠策划</h1>
+				<div class="otg-batman">
+					<div class="hidden w30 left" data-mv="bounceInLeft">PPT狂改200稿的OT公关狗</div>
+					<div class="w70 right">
+						<img class="hidden" src="imgs/OTG_batman.png" delay="1" data-mv="bounceInUp">
+					</div>
+				</div>
+			</div>
+			<div class="slide">
+				<h1>超人设计师</h1>
+				<div class="otg-batman">
+					<div class="w30 left">“高端大气上档次！也要接地气！要霸气！……”改改改的射鸡湿</div>
+					<div class="w70 right">
+						<img src="imgs/OTG_superman.png">
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="section" id="people_section">
+			<div class="backgrd">
+				<!-- <div class="terrence_background">
+					<img class="back_img" src="imgs/terrence_background.png">
+					<img src="imgs/terrence.png">
+				</div>
+				<div class="faye_background">
+					<img class="back_img" src="imgs/faye_background.png">
+					<img src="imgs/faye.png">
+				</div> -->
+			</div>
+		</div>
+		<div class="section">
+			<div id="ot_dog_container">
+				<div class="block">
+					<img class="hidden" data-mv="bounceInDown" src="imgs/block.png" alt="">
+				</div>
+				<div class="ot_dog">
+					<img class="hidden" data-mv="fadeInUp" src="imgs/ot_dog.png" alt="">
+				</div>
+			</div>
+		</div>
+		<div class="section" id="doggy">
+			<img src="imgs/3dog.png" alt="">
+		</div>
+		<div class="section" id="fin_page">
+			<div class="mary_logo">
+				<img data-mv="zoomIn" src="imgs/mlgb_logo.png" alt="">
+				<h1>中国新青年故事社交平台</h1>
+			</div>
+			<div class="rani">
+				<img data-mv="bounceInUp" class="right" src="imgs/rani.png" alt="">
+			</div>
+		</div>
+	</div>
+</body>
+</html>
