@@ -6,6 +6,7 @@ minifyCss      = require 'gulp-minify-css'
 runSequence    = require 'run-sequence'
 mainBowerFiles = require 'main-bower-files'
 rename         = require 'gulp-rename' 
+imagemin       = require 'gulp-imagemin'
 plugins        = require("gulp-load-plugins")(
   pattern: [
     "gulp-*"
@@ -91,8 +92,13 @@ gulp.task 'clean:dist', (cb) ->
     del [ destDest + "/*" ], cb
 
 gulp.task 'release:mv-src', ->
-    gulp.src [srcDest + '**/*']
+    gulp.src [srcDest + '**/*', "!" + srcDest + 'imgs/**/*']
         .pipe gulp.dest destDest
+
+gulp.task 'release:imgs-opt', ->
+    gulp.src [srcDest + 'imgs/**/*']
+        .pipe imagemin()
+        .pipe gulp.dest destDest + 'imgs/'
 
 
 gulp.task 'copy-libs', ['copy-libs:js', 'copy-libs:css', 'copy-mylibs:js', 'copy-mylibs:css']
@@ -103,4 +109,4 @@ gulp.task 'build:clean', ['build:clean:src-js', 'build:clean:src-css']
 gulp.task 'default', -> console.log 'no-op default task'
 # gulp.task 'build', runSequence 'copy-libs:js', 'copy-libs:css', 'minify:js', 'minify:css', 'clean:js', 'clean:css'
 gulp.task 'build', -> runSequence 'copy-libs', 'minify', 'build:clean', 'watch'
-gulp.task 'release', -> runSequence 'clean:dist', 'release:mv-src'
+gulp.task 'release', -> runSequence 'clean:dist', 'release:mv-src' , 'release:imgs-opt'

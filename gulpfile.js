@@ -1,4 +1,4 @@
-var del, destDest, gulp, mainBowerFiles, minifyCss, myLibs, myLibsCssSelector, myLibsJsSelector, plugins, rename, runSequence, srcCssDest, srcCssSelector, srcDest, srcJsDest, srcJsSelector, uglify;
+var del, destDest, gulp, imagemin, mainBowerFiles, minifyCss, myLibs, myLibsCssSelector, myLibsJsSelector, plugins, rename, runSequence, srcCssDest, srcCssSelector, srcDest, srcJsDest, srcJsSelector, uglify;
 
 gulp = require('gulp');
 
@@ -13,6 +13,8 @@ runSequence = require('run-sequence');
 mainBowerFiles = require('main-bower-files');
 
 rename = require('gulp-rename');
+
+imagemin = require('gulp-imagemin');
 
 plugins = require("gulp-load-plugins")({
   pattern: ["gulp-*", "gulp.*", "main-bower-files"],
@@ -95,7 +97,11 @@ gulp.task('clean:dist', function(cb) {
 });
 
 gulp.task('release:mv-src', function() {
-  return gulp.src([srcDest + '**/*']).pipe(gulp.dest(destDest));
+  return gulp.src([srcDest + '**/*', "!" + srcDest + 'imgs/**/*']).pipe(gulp.dest(destDest));
+});
+
+gulp.task('release:imgs-opt', function() {
+  return gulp.src([srcDest + 'imgs/**/*']).pipe(imagemin()).pipe(gulp.dest(destDest + 'imgs/'));
 });
 
 gulp.task('copy-libs', ['copy-libs:js', 'copy-libs:css', 'copy-mylibs:js', 'copy-mylibs:css']);
@@ -113,5 +119,5 @@ gulp.task('build', function() {
 });
 
 gulp.task('release', function() {
-  return runSequence('clean:dist', 'release:mv-src');
+  return runSequence('clean:dist', 'release:mv-src', 'release:imgs-opt');
 });
