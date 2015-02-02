@@ -1,4 +1,5 @@
-# Mac OS file
+# OS X Finder cache files
+*.DS_Store
 .DS_Store
 
 # bower
